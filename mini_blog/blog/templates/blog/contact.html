@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Full black background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Black background */
+            color: white; /* White text */
+        }
+
+        /* Form container styling */
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        /* Form fields */
+        .form-control, .btn {
+            background-color: #333; /* Darker form fields */
+            color: white;
+        }
+
+        .form-control:focus, .btn:hover {
+            background-color: #555; /* Slightly lighter on hover/focus */
+        }
+
+        .form-text {
+            color: #ddd; /* Lighter color for additional text */
+        }
+
+        /* Label text color */
+        .form-label {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contact Form Section -->
+    <div class="container my-5">
+        <h2 class="text-center">Contact Us</h2>
+        <form method="POST" action="{% url 'contact' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (Optional for some components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        /* Ensure form fields and labels are pure white */
+        body {
+            background-color: #000; /* Black background */
+            color: white; /* Default text color set to white */
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            color: white; /* White color for labels */
+        }
+        .form-control {
+            color: white; /* Text inside input fields */
+            background-color: #333; /* Darker background for input fields */
+            border: 1px solid white; /* White border */
+        }
+        .form-control::placeholder {
+            color: #aaa; /* Light gray for placeholders */
+        }
+        .form-control:focus {
+            color: white;
+            background-color: #444; /* Slightly lighter background on focus */
+            border-color: white;
+            box-shadow: none; /* Remove default Bootstrap shadow */
+        }
+        .submit {
+            background-color: white;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit:hover {
+            background-color: #555;
+            color: white;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .message.success {
+            background-color: green;
+            color: white;
+        }
+        .message.error {
+            background-color: red;
+            color: white;
+        }
+        .message.info {
+            background-color: blue;
+            color: white;
+        }
+        .message.warning {
+            background-color: orange;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    {% extends "blog/base.html" %}
+    {% load static %}
+    {% block content %}
+    <div class="col-sm-10">
+        <!-- Display messages -->
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <p class="message {{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Signup form -->
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+            {% for fm in form %}
+                <div class="mb-3">
+                    <label>{{ fm.label_tag }}</label>
+                    {{ fm }}
+                    <p style="color: red;">{{ fm.errors|striptags }}</p>
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit">Submit</button>
+        </form>
+    </div>
+    {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-sm-10">
+    <!-- Add padding/margin to push the text down -->
+    <h7 class="text-white mt-5">HOME PAGE</h7>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fully Black Background</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Make the entire background black */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Pure black background */
+            color: white; /* Default text color */
+        }
+
+        /* Optional: Ensure jumbotron content stands out */
+        hr {
+            border-color: #444; /* Subtle divider color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Black Jumbotron Section -->
+    {%for post in posts %}
+    <div class="py-5">
+        <div class="container">
+            <h1 class="display-4">{{post.title}}</h1>
+            <p class="lead">
+                {{post.description}}
+            </p>
+            <hr class="my-4">
+            
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+</div>
+{% endblock content %}
+
